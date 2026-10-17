@@ -21,6 +21,14 @@
 .title { font-size: 0.9rem; color: #a0a8c8; margin-top: 4px; }
 
 .affiliation { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+.uniText { display: flex; flex-direction: column; gap: 2px; flex: 1; }
+.labLogo { width: 32px; height: 32px; object-fit: contain; border-radius: 4px; flex-shrink: 0; }
+.labLogoFallback {
+  width: 32px; height: 32px; background: #2e2e60; border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.65rem; color: #a0b0ff; font-weight: 700; text-align: center;
+  flex-shrink: 0; line-height: 1.2;
+}
 .uniLogo { width: 32px; height: 32px; object-fit: contain; border-radius: 4px; flex-shrink: 0; }
 .uniLogoFallback {
   width: 32px; height: 32px; background: #2e2e60; border-radius: 4px;
@@ -28,7 +36,6 @@
   font-size: 0.65rem; color: #a0b0ff; font-weight: 700; text-align: center;
   flex-shrink: 0; line-height: 1.2;
 }
-.uniText { display: flex; flex-direction: column; gap: 2px; }
 .uniName { font-size: 0.95rem; color: #7c86bf; font-weight: 600; }
 .labName { font-size: 0.8rem; color: #a0a8c8; }
 

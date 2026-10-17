@@ -4,19 +4,19 @@ import Image from "next/image";
 import s from "./page.module.css";
 
 const card = {
-  name: "Jane Doe",
+  name: "LIM Chunki",
   title: "Master's Student",
-  university: "National Taiwan University",
-  universityLogo:
-    "https://upload.wikimedia.org/wikipedia/en/thumb/4/4e/National_Taiwan_University_seal.svg/120px-National_Taiwan_University_seal.svg.png",
-  lab: "Phonetics & Phonology Lab",
-  phone: "+1 234 567 8900",
-  email: "jane@example.com",
-  website: "https://janedoe.dev",
-  linkedin: "linkedin.com/in/janedoe",
-  github: "github.com/janedoe",
+  university: "Graduate Institute of Linguistics, National Taiwan University",
+  universityLogo: "https://www.ntu.edu.tw/images/resized/cis_mark-295w.jpeg",
+  lab: "Lab of Ontologies, Language Processing & E-Humanities",
+  labLogo: "",
+  phone: "+886 9 8838 2634",
+  email: "r14142001@ntu.edu.tw",
+  website: "tnterick.github.io/",
+  linkedin: "www.linkedin.com/in/chun-chi-lin-9a3b4a270/",
+  github: "github.com/TNTErik",
   location: "Taipei, Taiwan",
-  interests: ["Phonology", "Computational Linguistics", "Language Acquisition"],
+  interests: ["Diachronic Semantics", "Sign Language Recognition", "Historical Linguistics"],
 };
 
 const icons: Record<string, string> = {
@@ -57,9 +57,12 @@ function downloadVCard() {
   a.click();
 }
 
-const fallbackInitials = card.university
+const uniFallback = card.university
   ? card.university.split(" ").map((w) => w[0]).join("").slice(0, 4)
   : "U";
+const labFallback = card.lab
+  ? card.lab.split(" ").map((w) => w[0]).join("").slice(0, 4)
+  : "L";
 
 export default function BusinessCardLing() {
   return (
@@ -70,6 +73,26 @@ export default function BusinessCardLing() {
 
         {card.university && (
           <div className={s.affiliation}>
+            <div className={s.uniText}>
+              <span className={s.uniName}>{card.university}</span>
+              {card.lab && <span className={s.labName}>{card.lab}</span>}
+            </div>
+            {card.lab && (
+              card.labLogo ? (
+                <Image
+                  className={s.labLogo}
+                  src={card.labLogo}
+                  alt={card.lab}
+                  width={32}
+                  height={32}
+                  onError={(e) => {
+                    (e.currentTarget as HTMLImageElement).style.display = "none";
+                  }}
+                />
+              ) : (
+                <div className={s.labLogoFallback}>{labFallback}</div>
+              )
+            )}
             {card.universityLogo ? (
               <Image
                 className={s.uniLogo}
@@ -82,12 +105,8 @@ export default function BusinessCardLing() {
                 }}
               />
             ) : (
-              <div className={s.uniLogoFallback}>{fallbackInitials}</div>
+              <div className={s.uniLogoFallback}>{uniFallback}</div>
             )}
-            <div className={s.uniText}>
-              <span className={s.uniName}>{card.university}</span>
-              {card.lab && <span className={s.labName}>{card.lab}</span>}
-            </div>
           </div>
         )}
 
